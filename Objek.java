@@ -64,6 +64,14 @@ public class Objek {
         gl.glRotatef(90, 0, 0, 1);
         baling(gl);
         gl.glPopMatrix();
+
+        gl.glPushMatrix();
+        gl.glTranslatef(0f, 0f, 0f);
+        gl.glRotatef(90, 0, 1, 0);
+        sirip(gl);
+        gl.glRotatef(90, 1, 0, 0);
+        sirip(gl);
+        gl.glPopMatrix();
     }
 
     static void ruangkendali(GL gl) {
@@ -170,133 +178,78 @@ public class Objek {
         glu.gluDisk(q, 0.0f, BODY_RADIUS, SLICES, STACKS);
     }
 
-    static void sirip1(GL gl) {
-         gl.glBegin(GL.GL_POLYGON); //Kotak dpn
-        gl.glColor3f(1, 1, 1);
-        gl.glVertex3f(0.5f, 1.5f, 0.2f);
-        gl.glVertex3f(0.5f, -1.5f, 0.2f);
-        gl.glVertex3f(0.0f, -1.5f, 0.2f);
-        gl.glVertex3f(0.0f, 1.5f, 0.2f);
-        gl.glEnd();
-        
-        gl.glBegin(GL.GL_POLYGON); //Kotak blkg
-        gl.glColor3f(1, 1, 1);
-        gl.glVertex3f(0.5f, 1.5f, -0.2f);
-        gl.glVertex3f(0.5f, -1.5f, -0.2f);
-        gl.glVertex3f(0.0f, -1.5f, -0.2f);
-        gl.glVertex3f(0.0f, 1.5f, -0.2f);
-        gl.glEnd();
-        
+    static void sirip(GL gl) {
+        float amb[] = {0.34f, 0.34f, 0.34f, 1};
+        float diff[] = {0.41f, 0.41f, 0.41f, 1};
+        float spec[] = {0.11f, 0.11f, 0.11f, 1};
+        float shine = 200;
+
+        gl.glMaterialfv(GL.GL_FRONT_AND_BACK, GL.GL_AMBIENT, amb, 0);
+        gl.glMaterialfv(GL.GL_FRONT_AND_BACK, GL.GL_DIFFUSE, diff, 0);
+        gl.glMaterialfv(GL.GL_FRONT_AND_BACK, GL.GL_SPECULAR, spec, 0);
+        gl.glMaterialf(GL.GL_FRONT_AND_BACK, GL.GL_SHININESS, shine);
+
         gl.glBegin(GL.GL_POLYGON); //sisi dpn
-        gl.glColor3f(1, 1, 1);
-        gl.glVertex3f(0.5f, 1.5f, 0.2f);
-        gl.glVertex3f(2f, 0, 0.2f);
-        gl.glVertex3f(0.5f, -1.5f, 0.2f);
+        gl.glVertex3f(0.5f, 1f, 0.1f);
+        gl.glVertex3f(1.5f, 0, 0.1f);
+        gl.glVertex3f(0.5f, -1f, 0.1f);
         gl.glEnd();
-        
+
         gl.glBegin(GL.GL_POLYGON); //sisi blkg
-        gl.glColor3f(1, 1, 1);
-        gl.glVertex3f(0.5f, 1.5f, -0.2f);
-        gl.glVertex3f(2f, 0, -0.2f);
-        gl.glVertex3f(0.5f, -1.5f, -0.2f);
+        gl.glVertex3f(0.5f, 1f, -0.1f);
+        gl.glVertex3f(1.5f, 0, -0.1f);
+        gl.glVertex3f(0.5f, -1f, -0.1f);
         gl.glEnd();
-        
-        gl.glBegin(GL.GL_POLYGON); //sisi atas kotak
-        gl.glColor3f(1, 1, 1);
-        gl.glVertex3f(0.5f, 1.5f, 0.2f);
-        gl.glVertex3f(0f, 1.5f, 0.2f);
-        gl.glVertex3f(0f, 1.5f, -0.2f);
-        gl.glVertex3f(0.5f, 1.5f, -0.2f);
-        gl.glEnd();
-        
-        gl.glBegin(GL.GL_POLYGON); //sisi bawah kotak
-        gl.glColor3f(1, 1, 1);
-        gl.glVertex3f(0.5f, -1.5f, 0.2f);
-        gl.glVertex3f(0f, -1.5f, 0.2f);
-        gl.glVertex3f(0f, -1.5f, -0.2f);
-        gl.glVertex3f(0.5f, -1.5f, -0.2f);
-        gl.glEnd();
-        
+
         gl.glBegin(GL.GL_POLYGON); //sisi atas miring
-        gl.glColor3f(1, 1, 1);
-        gl.glVertex3f(0f, 1.5f, 0.2f);
-        gl.glVertex3f(2f, 0f, 0.2f);
-        gl.glVertex3f(2f, 0f, -0.2f);
-        gl.glVertex3f(0f, 1.5f, -0.2f);
+        gl.glVertex3f(0.5f, 1f, 0.1f);
+        gl.glVertex3f(1.5f, 0f, 0.1f);
+        gl.glVertex3f(1.5f, 0f, -0.1f);
+        gl.glVertex3f(0.5f, 1f, -0.1f);
         gl.glEnd();
-        
+
         gl.glBegin(GL.GL_POLYGON); //sisi bawah miring
-        gl.glColor3f(1, 1, 1);
-        gl.glVertex3f(0f, -1.5f, 0.2f);
-        gl.glVertex3f(2f, 0f, 0.2f);
-        gl.glVertex3f(2f, 0f, -0.2f);
-        gl.glVertex3f(0f, -1.5f, -0.2f);
+        gl.glVertex3f(0.5f, -1f, 0.1f);
+        gl.glVertex3f(1.5f, 0f, 0.1f);
+        gl.glVertex3f(1.5f, 0f, -0.1f);
+        gl.glVertex3f(0.5f, -1f, -0.1f);
+        gl.glEnd();
+
+        gl.glBegin(GL.GL_POLYGON); //Kotak dpn
+        gl.glVertex3f(0.5f, 1f, 0.1f);
+        gl.glVertex3f(0.5f, -1f, 0.1f);
+        gl.glVertex3f(0.4f, -1f, 0.1f);
+        gl.glVertex3f(0.4f, 1f, 0.1f);
+        gl.glEnd();
+
+        gl.glBegin(GL.GL_POLYGON); //Kotak blkg
+        gl.glVertex3f(0.5f, 1f, -0.1f);
+        gl.glVertex3f(0.5f, -1f, -0.1f);
+        gl.glVertex3f(0.4f, -1f, -0.1f);
+        gl.glVertex3f(0.4f, 1f, -0.1f);
+        gl.glEnd();
+
+        gl.glBegin(GL.GL_POLYGON); //Kotak tutup belakang
+        gl.glVertex3f(0.4f, 1f, 0.1f);
+        gl.glVertex3f(0.4f, -1f, 0.1f);
+        gl.glVertex3f(0.4f, -1f, -0.1f);
+        gl.glVertex3f(0.4f, 1f, -0.1f);
+        gl.glEnd();
+
+        gl.glBegin(GL.GL_POLYGON); //sisi atas kotak;
+        gl.glVertex3f(0.5f, 1f, 0.1f);
+        gl.glVertex3f(0.4f, 1f, 0.1f);
+        gl.glVertex3f(0.4f, 1f, -0.1f);
+        gl.glVertex3f(0.5f, 1f, -0.1f);
+        gl.glEnd();
+
+        gl.glBegin(GL.GL_POLYGON); //sisi bawah kotak
+        gl.glVertex3f(0.5f, -1f, 0.1f);
+        gl.glVertex3f(0.4f, -1f, 0.1f);
+        gl.glVertex3f(0.4f, -1f, -0.1f);
+        gl.glVertex3f(0.5f, -1f, -0.1f);
         gl.glEnd();
     }
-   
-   static void sirip2(GL gl) {
-         gl.glBegin(GL.GL_POLYGON); //Kotak dpn
-        gl.glColor3f(1, 1, 1);
-        gl.glVertex3f(0.5f, 1.5f, 0.2f);
-        gl.glVertex3f(0.5f, -1.5f, 0.2f);
-        gl.glVertex3f(0.0f, -1.5f, 0.2f);
-        gl.glVertex3f(0.0f, 1.5f, 0.2f);
-        gl.glEnd();
-        
-        gl.glBegin(GL.GL_POLYGON); //Kotak blkg
-        gl.glColor3f(1, 1, 1);
-        gl.glVertex3f(0.5f, 1.5f, -0.2f);
-        gl.glVertex3f(0.5f, -1.5f, -0.2f);
-        gl.glVertex3f(0.0f, -1.5f, -0.2f);
-        gl.glVertex3f(0.0f, 1.5f, -0.2f);
-        gl.glEnd();
-        
-        gl.glBegin(GL.GL_POLYGON); //sisi dpn
-        gl.glColor3f(1, 1, 1);
-        gl.glVertex3f(0.5f, 1.5f, 0.2f);
-        gl.glVertex3f(2f, 0, 0.2f);
-        gl.glVertex3f(0.5f, -1.5f, 0.2f);
-        gl.glEnd();
-        
-        gl.glBegin(GL.GL_POLYGON); //sisi blkg
-        gl.glColor3f(1, 1, 1);
-        gl.glVertex3f(0.5f, 1.5f, -0.2f);
-        gl.glVertex3f(2f, 0, -0.2f);
-        gl.glVertex3f(0.5f, -1.5f, -0.2f);
-        gl.glEnd();
-        
-        gl.glBegin(GL.GL_POLYGON); //sisi atas kotak
-        gl.glColor3f(1, 1, 1);
-        gl.glVertex3f(0.5f, 1.5f, 0.2f);
-        gl.glVertex3f(0f, 1.5f, 0.2f);
-        gl.glVertex3f(0f, 1.5f, -0.2f);
-        gl.glVertex3f(0.5f, 1.5f, -0.2f);
-        gl.glEnd();
-        
-        gl.glBegin(GL.GL_POLYGON); //sisi bawah kotak
-        gl.glColor3f(1, 1, 1);
-        gl.glVertex3f(0.5f, -1.5f, 0.2f);
-        gl.glVertex3f(0f, -1.5f, 0.2f);
-        gl.glVertex3f(0f, -1.5f, -0.2f);
-        gl.glVertex3f(0.5f, -1.5f, -0.2f);
-        gl.glEnd();
-        
-        gl.glBegin(GL.GL_POLYGON); //sisi atas miring
-        gl.glColor3f(1, 1, 1);
-        gl.glVertex3f(0f, 1.5f, 0.2f);
-        gl.glVertex3f(2f, 0f, 0.2f);
-        gl.glVertex3f(2f, 0f, -0.2f);
-        gl.glVertex3f(0f, 1.5f, -0.2f);
-        gl.glEnd();
-        
-        gl.glBegin(GL.GL_POLYGON); //sisi bawah miring
-        gl.glColor3f(1, 1, 1);
-        gl.glVertex3f(0f, -1.5f, 0.2f);
-        gl.glVertex3f(2f, 0f, 0.2f);
-        gl.glVertex3f(2f, 0f, -0.2f);
-        gl.glVertex3f(0f, -1.5f, -0.2f);
-        gl.glEnd();
-   }
     
     static void movement(GL gl) {
 
