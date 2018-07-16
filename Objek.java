@@ -6,6 +6,7 @@ import javax.media.opengl.glu.GLU;
 import javax.media.opengl.glu.GLUquadric;
 
 public class Objek {
+   static int angle ;
    
     static void balon(GL gl) {
         float amb[] = {0.34f, 0.34f, 0.34f, 1};
@@ -55,11 +56,11 @@ public class Objek {
         glu.gluSphere(q, 0.2, SLICES, STACKS);
         glu.gluDeleteQuadric(q);
        
-       gl.glPushMatrix();
-        gl.glTranslatef(0f, 1.7f, -2.8f);
+        gl.glPushMatrix();
+        gl.glTranslatef(0f, 1.7f, -2.5f);
         gl.glRotatef(-90, 0, 0, 1);
         baling(gl);
-        gl.glTranslatef(0f, 0f, 2.5f);
+        gl.glTranslatef(0f, -0.5f, 2.7f);
         gl.glRotatef(-90, 1, 0, 0);
         gl.glRotatef(90, 0, 0, 1);
         baling(gl);
@@ -74,11 +75,22 @@ public class Objek {
         gl.glPopMatrix();
        
         gl.glPushMatrix();
-        gl.glTranslatef(0, 0, -5f);
-        gl.glTranslatef(-1, 0, 0f);
+        gl.glTranslatef(-1, 0, -5f);
         gl.glRotatef(90, 1, 0,0);
         gl.glRotatef(-90, 0, 0,1);
         ruangkendali(gl);
+        gl.glPopMatrix();
+        
+        gl.glPushMatrix();
+        gl.glTranslatef(0, 0, 0);
+        gl.glTranslatef(0f, 1.8f, -2.5f);
+        realbaling(gl);
+        gl.glPopMatrix();
+        
+        gl.glPushMatrix();
+        gl.glTranslatef(0, 0, 0);
+        gl.glTranslatef(0f, -1.8f, -2.5f);
+        realbaling(gl);
         gl.glPopMatrix();
     }
 
@@ -124,9 +136,18 @@ public class Objek {
         gl.glVertex3f(-2f, 0.5f, -0.4f);
         gl.glVertex3f(-2f, 0.5f, 0.4f);
         gl.glEnd();
+        
+        gl.glBegin(GL.GL_POLYGON);
+        gl.glVertex3d(-1, -0.5, 0.4);
+        gl.glVertex3d(-1, -0.5, -0.4f);
+        gl.glVertex3d(1, -0.5, -0.4f);
+        gl.glVertex3d(1, -0.5, 0.4);
+        gl.glEnd();
     }
 
     static void baling(GL gl) {
+        
+        //realbaling(gl);
         
         float amb[] = {0.34f, 0.34f, 0.34f, 1};
         float diff[] = {0.41f, 0.41f, 0.41f, 1};
@@ -166,9 +187,12 @@ public class Objek {
         glu.gluDeleteQuadric(q);
 
         batangkipas(gl);
+        //realbaling(gl);
+       
     }
 
     static void kipas(GL gl) {
+        
 
     }
 
@@ -194,6 +218,8 @@ public class Objek {
         glu.gluDisk(q, 0.0f, BODY_RADIUS, SLICES, STACKS);
         gl.glTranslatef(0.0f, 0.0f, BODY_LENGTH);
         glu.gluDisk(q, 0.0f, BODY_RADIUS, SLICES, STACKS);
+        
+       // realbaling(gl);
     }
 
     static void sirip(GL gl) {
@@ -271,5 +297,50 @@ public class Objek {
     
     static void movement(GL gl) {
 
+    }
+    static void realbaling(GL gl){
+        
+       
+        float amb[] = {1f, 0f, 1f, 1};
+        float diff[] = {0.41f, 0.41f, 0.41f, 1};
+        float spec[] = {0.11f, 0.11f, 0.11f, 1};
+        float shine = 200;
+        
+        gl.glMaterialfv(GL.GL_FRONT_AND_BACK, GL.GL_AMBIENT, amb, 0);
+        gl.glMaterialfv(GL.GL_FRONT_AND_BACK, GL.GL_DIFFUSE, diff, 0);
+        gl.glMaterialfv(GL.GL_FRONT_AND_BACK, GL.GL_SPECULAR, spec, 0);
+        gl.glMaterialf(GL.GL_FRONT_AND_BACK, GL.GL_SHININESS, shine);
+        
+        //gl.glRotatef(90, 0, 1, 0);
+        gl.glRotatef(angle, 0, 0, 1);
+        gl.glBegin(GL.GL_POLYGON);
+        gl.glVertex3f(0.5f, 0f, 0);
+        gl.glVertex3f(0.5f, 0.1f, -0.1f);
+        gl.glVertex3f(0, 0.1f, -0.1f);
+        gl.glVertex3f(0, 0, 0);
+        gl.glEnd();
+        
+        gl.glBegin(GL.GL_POLYGON);
+        gl.glVertex3f(0f,0.5f,0);
+        gl.glVertex3f(-0.1f, 0.5f, -0.1f);
+        gl.glVertex3f(-0.1f, 0, -0.1f);
+        gl.glVertex3f(0, 0, 0);
+        gl.glEnd();
+        
+        gl.glBegin(GL.GL_POLYGON);
+        gl.glVertex3f(-0.5f,0,0);
+        gl.glVertex3f(-0.5f, -0.1f, -0.1f);
+        gl.glVertex3f(0, -0.1f, -0.1f);
+        gl.glVertex3f(0, 0, 0);
+        gl.glEnd();
+        
+        gl.glBegin(GL.GL_POLYGON);
+        gl.glVertex3f(0f,-0.5f,0);
+        gl.glVertex3f(0.1f, -0.5f, -0.1f);
+        gl.glVertex3f(0.1f, 0, -0.1f);
+        gl.glVertex3f(0, 0, 0);
+        gl.glEnd();
+        
+        angle -=60;
     }
 }
