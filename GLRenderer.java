@@ -7,6 +7,7 @@ import javax.media.opengl.glu.GLU;
 
 public class GLRenderer implements GLEventListener {
 //class vector untuk memudah vektor-isasi
+    static int angle;
 
     class vector {
 
@@ -133,7 +134,7 @@ gunakan -1 untuk arah berlawanan dengan vektor awal
         gl.glViewport(0, 0, width, height);
         gl.glMatrixMode(GL.GL_PROJECTION);
         gl.glLoadIdentity();
-        glu.gluPerspective(45.0f, h, 1.0, 20.0);
+        glu.gluPerspective(90.0f, h, 1.0, 90.0);
         gl.glMatrixMode(GL.GL_MODELVIEW);
         gl.glLoadIdentity();
     }
@@ -154,15 +155,10 @@ gunakan -1 untuk arah berlawanan dengan vektor awal
         gl.glRotatef(silinderAngle, 1f, 0, 0);
         gl.glRotatef(silinderAngle1, 0, 1f, 0);
         gl.glRotatef(silinderAngle2, 0, 0, 1f);
-//        Objek.balon(gl);
-//        Objek.baling(gl);
-//        Objek.kendali(gl);
-//        Objek.sirip(gl);
-        Objek.kipas(gl);
+        Objek.balon(gl);
         gl.glPopMatrix();
-        gl.glPushMatrix();
-//        Objek.BigBox(gl);
-        gl.glPopMatrix();
+        
+        
         if (silinder) {
             silinderAngle += 15f;
         }
@@ -206,35 +202,110 @@ gunakan -1 untuk arah berlawanan dengan vektor awal
     }
 
     void Key_Pressed(int keyCode) {
-        if (keyCode == 52) {
-            if (silinder) {
-                silinder = false;
+//huruf W
+        if (keyCode == 87) {
+            vectorMovement(depanBelakang, 2f, 1f);
+        } //huruf S
+        else if (keyCode == 83) {
+            vectorMovement(depanBelakang, 2f, -1f);
+        } //huruf D
+        else if (keyCode == 68) {
+            vectorMovement(samping, 2f, 1f);
+        } //huruf  
+       else if (keyCode == 65) {
+            vectorMovement(samping, 2f, -1f);
+        } //panah atas
+        else if (keyCode == 38) {
+            vectorMovement(vertikal, 2f, 1f);
+        } //panah bawah
+        else if (keyCode == 40) {
+            vectorMovement(vertikal, 2f, -1f);
+        } //tombol spasi
+        else if (keyCode == 32) {
+            if (silinder3) {
+                silinder3 = false;
             } else {
-                silinder = true;
+                silinder3 = true;
             }
-        }//tombolB
-        else if (keyCode == 66) {
+        } //tombol1 51
+        else if (keyCode == 49) {
+            if (silinder3) {
+                silinder3 = false;
+            } else {
+                silinder3 = true;
+            }
+        } //tombol2 53
+        else if (keyCode == 50) {
+            if (silinder4) {
+                silinder4 = false;
+            } else {
+                silinder4 = true;
+            }
+        } //tombol3 52
+        else if (keyCode == 51) {
             if (silinder5) {
                 silinder5 = false;
             } else {
                 silinder5 = true;
             }
-        } //tombolC
-        else if (keyCode == 67) {
-            if (silinder2) {
-                silinder2 = false;
-            } else {
-                silinder2 = true;
-            }
-        } //tombolA
-        else if (keyCode == 65) {
+        } //tombol4 32
+        else if (keyCode == 52) {
             if (silinder) {
                 silinder = false;
             } else {
                 silinder = true;
             }
-        } //Huruf p
-        else if (keyCode == 80) {
+        } //tombol5 49
+        else if (keyCode == 53) {
+            if (silinder1) {
+                silinder1= false;
+            } else {
+                silinder1 = true;
+            }
+        } //tombol enter
+        else if (keyCode == 10) {
+            if (kamera) {
+                kamera = false;
+            } else {
+                kamera = true;
+            }
+        } //tombol z
+        else if (keyCode == 90) {
+            if (kamera2) {
+                kamera2= false;
+            } else {
+                kamera2 = true;
+            }
+        } //tombol x
+        else if (keyCode == 88) {
+            if (kamera) {
+                kamera = false;
+            } else {
+                kamera = true;
+            }
+        } //tombol c
+        else if (keyCode == 67) {
+            if (kamera1) {
+                kamera1 = false;
+            } else {
+                kamera1 = true;
+            }
+        } //tombol v
+        else if (keyCode == 86) {
+            if (kamera5) {
+                kamera5 = false;
+            } else {
+                kamera5 = true;
+            }
+        } //tombol b
+        else if (keyCode == 66) {
+            if (kamera4) {
+                kamera4 = false;
+            } else {
+                kamera4 = true;
+            }
+        } //huruf J
+        else if (keyCode == 74) {
             angle_vertikal += 15f;
             samping.vectorRotation(vertikal, angle_vertikal - angle_vertikal2);
             depanBelakang.vectorRotation(vertikal, angle_vertikal - angle_vertikal2);
@@ -247,29 +318,29 @@ gunakan -1 untuk arah berlawanan dengan vektor awal
             depanBelakang.vectorRotation(vertikal, angle_vertikal - angle_vertikal2);
             cameraRotation(vertikal, angle_vertikal - angle_vertikal2);
             angle_vertikal2 = angle_vertikal;
-        } //Panah Kiri
-        else if (keyCode == 37) {
+        } //huruf I
+        else if (keyCode == 73) {
             angle_samping -= 15f;
 //vertikal.vectorRotation(samping, angle_samping-angle_samping2);
             depanBelakang.vectorRotation(samping, angle_samping - angle_samping2);
             cameraRotation(samping, angle_samping - angle_samping2);
             angle_samping2 = angle_samping;
-        } //Panah Kanan
-        else if (keyCode == 39) {
+        } //huruf K
+        else if (keyCode == 75) {
             angle_samping += 15f;
 //vertikal.vectorRotation(samping, angle_samping-angle_samping2);
             depanBelakang.vectorRotation(samping, angle_samping - angle_samping2);
             cameraRotation(samping, angle_samping - angle_samping2);
             angle_samping2 = angle_samping;
-        } //panah Bawah
-        else if (keyCode == 40) {
+        } //panah kanan
+        else if (keyCode == 39) {
             angle_depanBelakang -= 15f;
             samping.vectorRotation(depanBelakang, angle_depanBelakang - angle_depanBelakang2);
             vertikal.vectorRotation(depanBelakang, angle_depanBelakang - angle_depanBelakang2);
 //cameraRotation(vertikal, angle_samping-angle_samping2);
             angle_depanBelakang2 = angle_depanBelakang;
-        } //panah Atas
-        else if (keyCode == 38) {
+        } //panah kiri
+        else if (keyCode == 37) {
             angle_depanBelakang += 15f;
             samping.vectorRotation(depanBelakang, angle_depanBelakang - angle_depanBelakang2);
             vertikal.vectorRotation(depanBelakang, angle_depanBelakang - angle_depanBelakang2);
