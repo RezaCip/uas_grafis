@@ -102,8 +102,33 @@ gunakan -1 untuk arah berlawanan dengan vektor awal
         Ly = Ly1 + Cy;
         Lz = Lz1 + Cz;
     }
-
+    static Texture texture;
+    static Texture texture2;
+    static Texture texture3;
+    static Texture texture4;
+    static Texture texture5;
     public void init(GLAutoDrawable drawable) {
+        try {
+            texture = TextureIO.newTexture(new File("D:/jendela.jpg"), true);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }try {
+            texture2 = TextureIO.newTexture(new File("D:/pintu.jpg"), true);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }try {
+            texture3 = TextureIO.newTexture(new File("D:/kacadpn.jpg"), true);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }try {
+            texture4 = TextureIO.newTexture(new File("D:/hitam.jpg"), true);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }try {
+            texture5 = TextureIO.newTexture(new File("D:/logo.jpg"), true);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
 // Use debug pipeline
 // drawable.setGL(new DebugGL(drawable.getGL()));
         GL gl = drawable.getGL();
