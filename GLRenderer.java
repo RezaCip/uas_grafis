@@ -222,11 +222,17 @@ gunakan -1 untuk arah berlawanan dengan vektor awal
             vectorMovement(vertikal, 2f, -1f);
         } //tombol spasi
         else if (keyCode == 32) {
-            if (silinder3) {
-                silinder3 = false;
+//            if (silinder3) {
+//                silinder3 = false;
+//            } else {
+//                silinder3 = true;
+//            }
+            if (Objek.status){
+                Objek.status  = false;
             } else {
-                silinder3 = true;
+                Objek.status = true;
             }
+            Objek.angle = 0;
         } //tombol1 51
         else if (keyCode == 49) {
             if (silinder3) {
