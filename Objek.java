@@ -96,54 +96,76 @@ public class Objek {
     }
 
     static void ruangkendali(GL gl) {
-        float amb[] = {1f, 0f, 1f, 1};
-        float diff[] = {0.41f, 0.41f, 0.41f, 1};
-        float spec[] = {0.11f, 0.11f, 0.11f, 1};
-        float shine = 200;
-
-        gl.glMaterialfv(GL.GL_FRONT_AND_BACK, GL.GL_AMBIENT, amb, 0);
-        gl.glMaterialfv(GL.GL_FRONT_AND_BACK, GL.GL_DIFFUSE, diff, 0);
-        gl.glMaterialfv(GL.GL_FRONT_AND_BACK, GL.GL_SPECULAR, spec, 0);
-        gl.glMaterialf(GL.GL_FRONT_AND_BACK, GL.GL_SHININESS, shine);
         
+        texture.enable();
+        texture.bind();
         gl.glBegin(GL.GL_POLYGON); //sisi depan
-        gl.glColor3f(1, 1, 1);
+       gl.glTexCoord2f(0, 0);
         gl.glVertex3f(1f, 0.5f, 0.4f);
+       gl.glTexCoord2f(0.5f, 0);
         gl.glVertex3f(-2f, 0.5f, 0.4f);
+       gl.glTexCoord2f(0.5f, 1);
         gl.glVertex3f(-1f, -0.5f, 0.4f);
+       gl.glTexCoord2f(0, 1);
         gl.glVertex3f(1f, -0.5f, 0.4f);
         gl.glEnd();
+       texture.disable();
 
-        gl.glBegin(GL.GL_POLYGON); //sisi blkg
-        gl.glColor3f(1, 1, 1);
+       texture.enable();
+        texture.bind(); 
+       gl.glBegin(GL.GL_POLYGON); //sisi blkg
+       gl.glTexCoord2f(0, 0);
         gl.glVertex3f(1f, 0.5f, -0.4f);
+       gl.glTexCoord2f(0.5f, 0);
         gl.glVertex3f(-2f, 0.5f, -0.4f);
+       gl.glTexCoord2f(0.5f, 1);
         gl.glVertex3f(-1f, -0.5f, -0.4f);
+       gl.glTexCoord2f(0, 1);
         gl.glVertex3f(1f, -0.5f, -0.4f);
         gl.glEnd();
+       texture.disable();
 
-        gl.glBegin(GL.GL_POLYGON); //sisi dpn a
-        gl.glColor3f(1, 1, 1);
+       texture3.enable();
+        texture3.bind(); 
+       gl.glBegin(GL.GL_POLYGON); //sisi dpn a
+        gl.glTexCoord2f(0, 0);
         gl.glVertex3f(1f, 0.5f, 0.4f);
+       gl.glTexCoord2f(1, 0);
         gl.glVertex3f(1f, 0.5f, -0.4f);
+       gl.glTexCoord2f(1, 1);
         gl.glVertex3f(1f, -0.5f, -0.4f);
+       gl.glTexCoord2f(0, 1);
         gl.glVertex3f(1f, -0.5f, 0.4f);
         gl.glEnd();
+       texture3.disable();
 
-        gl.glBegin(GL.GL_POLYGON); //sisi dpn b
-        gl.glColor3f(1, 1, 1);
+       texture2.enable();
+        texture2.bind(); 
+       gl.glBegin(GL.GL_POLYGON); //sisi dpn b
+        gl.glTexCoord2f(0, 0);
         gl.glVertex3f(-1f, -0.5f, 0.4f);
+       gl.glTexCoord2f(1, 0);
         gl.glVertex3f(-1f, -0.5f, -0.4f);
+       gl.glTexCoord2f(1, 1);
         gl.glVertex3f(-2f, 0.5f, -0.4f);
+       gl.glTexCoord2f(0, 1);
         gl.glVertex3f(-2f, 0.5f, 0.4f);
         gl.glEnd();
+       texture2.disable();
         
-        gl.glBegin(GL.GL_POLYGON);
+       texture4.enable();
+        texture4.bind(); 
+       gl.glBegin(GL.GL_POLYGON);
+       gl.glTexCoord2f(0, 0);
         gl.glVertex3d(-1, -0.5, 0.4);
+       gl.glTexCoord2f(1, 0);
         gl.glVertex3d(-1, -0.5, -0.4f);
+       gl.glTexCoord2f(1, 1);
         gl.glVertex3d(1, -0.5, -0.4f);
+       gl.glTexCoord2f(0, 1);
         gl.glVertex3d(1, -0.5, 0.4);
         gl.glEnd();
+       texture4.disable();
     }
 
     static void baling(GL gl) {
@@ -234,17 +256,29 @@ public class Objek {
         gl.glMaterialfv(GL.GL_FRONT_AND_BACK, GL.GL_SPECULAR, spec, 0);
         gl.glMaterialf(GL.GL_FRONT_AND_BACK, GL.GL_SHININESS, shine);
 
-        gl.glBegin(GL.GL_POLYGON); //sisi dpn
+       texture5.enable();
+        texture5.bind(); 
+       gl.glBegin(GL.GL_POLYGON); //sisi dpn
+       gl.glTexCoord2f(0f, 0);
         gl.glVertex3f(0.5f, 1f, 0.1f);
+       gl.glTexCoord2f(0.5f, 0);
         gl.glVertex3f(1.5f, 0, 0.1f);
+       gl.glTexCoord2f(0.5f, 0.5f);
         gl.glVertex3f(0.5f, -1f, 0.1f);
         gl.glEnd();
+       texture5.disable();
 
-        gl.glBegin(GL.GL_POLYGON); //sisi blkg
+       texture5.enable();
+        texture5.bind(); 
+       gl.glBegin(GL.GL_POLYGON); //sisi blkg
+       gl.glTexCoord2f(0f, 0);
         gl.glVertex3f(0.5f, 1f, -0.1f);
+       gl.glTexCoord2f(0.5f, 0);
         gl.glVertex3f(1.5f, 0, -0.1f);
+       gl.glTexCoord2f(0.5f, 0.5f);
         gl.glVertex3f(0.5f, -1f, -0.1f);
         gl.glEnd();
+       texture5.disable();
 
         gl.glBegin(GL.GL_POLYGON); //sisi atas miring
         gl.glVertex3f(0.5f, 1f, 0.1f);
@@ -302,9 +336,9 @@ public class Objek {
     static void realbaling(GL gl){
         
        
-        float amb[] = {1f, 0f, 1f, 1};
-        float diff[] = {0.41f, 0.41f, 0.41f, 1};
-        float spec[] = {0.11f, 0.11f, 0.11f, 1};
+        float amb[] = {0f, 0f, 0f, 1};
+        float diff[] = {0f, 0f, 0.6f, 1};
+        float spec[] = {0f, 0f, 0f, 1};
         float shine = 200;
         
         gl.glMaterialfv(GL.GL_FRONT_AND_BACK, GL.GL_AMBIENT, amb, 0);
