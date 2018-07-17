@@ -7,6 +7,7 @@ import javax.media.opengl.glu.GLUquadric;
 
 public class Objek {
    static int angle ;
+   static boolean status = false;
    
     static void balon(GL gl) {
         float amb[] = {0.34f, 0.34f, 0.34f, 1};
@@ -187,7 +188,7 @@ public class Objek {
         glu.gluDeleteQuadric(q);
 
         batangkipas(gl);
-        //realbaling(gl);
+        
        
     }
 
@@ -341,6 +342,9 @@ public class Objek {
         gl.glVertex3f(0, 0, 0);
         gl.glEnd();
         
-        angle -=60;
+        
+        if (status){
+            angle +=15f;
+        }
     }
 }
